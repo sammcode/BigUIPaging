@@ -57,8 +57,8 @@ struct CardDeckPageView: View {
         }
         .measure($containerSize)
         .scaleEffect(0.8)
-        .delaysTouches(for: 0.01)
-        .highPriorityGesture(dragGesture)
+        .delaysTouches(for: 0.001)
+        .gesture(dragGesture)
         .task {
             makePages(from: configuration.selection.wrappedValue)
         }
