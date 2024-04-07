@@ -57,7 +57,7 @@ struct CardDeckPageView: View {
         }
         .measure($containerSize)
         .scaleEffect(0.8)
-        .simultaneousGesture(dragGesture)
+        .simultaneousGesture(longPressGesture.sequenced(before: dragGesture))
         .task {
             makePages(from: configuration.selection.wrappedValue)
         }
@@ -76,6 +76,10 @@ struct CardDeckPageView: View {
             Page(index: $0.offset, value: $0.element)
         }
         self.selectedIndex = index
+    }
+    
+    var longPressGesture: some Gesture {
+        LongPressGesture(minimumDuration: 0.01)
     }
     
     var dragGesture: some Gesture {
